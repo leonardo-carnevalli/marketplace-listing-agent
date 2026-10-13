@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "marketplace-listing-agent"
+version = "0.1.0"
+description = "LLM workflow that researches, drafts, self-critiques and prices marketplace listings, with a pure, well-tested pricing core."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Leonardo Carnevalli" }]
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7",
+    "typer>=0.12",
+]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=1.0"]
+openai = ["openai>=2.0"]
+dev = [
+    "anthropic>=1.0",
+    "openai>=2.0",
+    "pytest>=8",
+    "pytest-cov>=5",
+    "hypothesis>=6.100",
+    "ruff>=0.6",
+    "mypy>=1.11",
+]
+
+[project.scripts]
+listing-agent = "listing_agent.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/listing_agent"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=listing_agent --cov-report=term-missing --cov-fail-under=90"
+
+[tool.coverage.run]
+branch = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "N", "C4", "PT", "RET", "ARG"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+mypy_path = "src"
+files = ["src", "tests"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
