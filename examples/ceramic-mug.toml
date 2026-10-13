@@ -1,0 +1,32 @@
+# Example product brief. Every value is fictional.
+name = "Handmade ceramic coffee mug 350 ml"
+category = "Home > Kitchen > Mugs and cups"
+audience = "coffee drinkers who want a sturdy everyday mug or a simple gift"
+features = [
+  "Holds 350 ml, a full large coffee",
+  "Thick stoneware walls keep the drink warm longer",
+  "Glazed inside, easy to clean",
+  "Each piece is glazed by hand, so the color varies slightly",
+]
+limitations = [
+  "Not suitable for the microwave because of the metallic rim",
+  "Hand wash recommended; the dishwasher fades the rim over time",
+  "Sold as a single mug, not a set",
+]
+seed_keywords = ["ceramic mug", "coffee mug", "350 ml", "handmade", "stoneware", "gift"]
+notes_file = "ceramic-mug-notes.md"
+target_margin = "0.20"
+listing_type = "classic"
+
+attributes = [
+  { name = "Brand", value = "Studio Example" },
+  { name = "Model", value = "Daily 350" },
+  { name = "Material", value = "Stoneware ceramic" },
+  { name = "Capacity", value = "350 ml" },
+  { name = "Color", value = "Sand with dark rim" },
+]
+
+[costs]
+unit_cost = "31.00"      # product plus packaging
+shipping_cost = "21.90"  # what the seller pays when shipping is on them
+tax_rate = "0.06"        # tax on gross revenue

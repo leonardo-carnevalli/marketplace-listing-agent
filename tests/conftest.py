@@ -1,9 +1,26 @@
 from decimal import Decimal
+from pathlib import Path
 
 import pytest
 
-from listing_agent.models import Attribute, ListingDraft
+from listing_agent.config import MarketplaceConfig, load_brief, load_config
+from listing_agent.models import Attribute, ListingDraft, ProductBrief
 from listing_agent.pricing import CostInputs, FeeSchedule, FeeTier
+
+ROOT = Path(__file__).resolve().parent.parent
+CONFIG_PATH = ROOT / "config" / "marketplace.example.toml"
+BRIEF_PATH = ROOT / "examples" / "ceramic-mug.toml"
+
+
+@pytest.fixture
+def config() -> MarketplaceConfig:
+    return load_config(CONFIG_PATH)
+
+
+@pytest.fixture
+def brief() -> ProductBrief:
+    return load_brief(BRIEF_PATH)
+
 
 @pytest.fixture
 def classic() -> FeeSchedule:

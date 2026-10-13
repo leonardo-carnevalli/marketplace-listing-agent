@@ -1,0 +1,37 @@
+# Example marketplace config.
+#
+# IMPORTANT: every fee below is an ILLUSTRATIVE PLACEHOLDER, shaped like a typical
+# marketplace fee table (a percentage per sale, a fixed fee per unit on cheap items,
+# and seller-paid shipping above a free-shipping threshold). Marketplaces change
+# fees often and they vary by category. Check the real numbers in your seller
+# dashboard before trusting any price this tool suggests.
+#
+# Money and rates are strings so they load as exact decimals ("0.12" = 12%).
+
+[rules]
+max_title_length = 60
+min_description_length = 300
+min_keyword_coverage = 0.6
+min_score = 80
+forbidden_words = ["best", "cheapest", "free", "promo", "sale", "original", "melhor", "promoção", "grátis"]
+required_attributes = ["Brand", "Model", "Material", "Capacity", "Color"]
+
+[fees.classic]
+# Seller pays shipping at or above this price (buyer gets free shipping).
+seller_pays_shipping_from = "79.00"
+tiers = [
+  { up_to = "29.00", percent = "0.12", fixed_fee = "6.25" },
+  { up_to = "50.00", percent = "0.12", fixed_fee = "6.50" },
+  { up_to = "79.00", percent = "0.12", fixed_fee = "6.75" },
+  { percent = "0.12" },
+]
+
+[fees.premium]
+# Higher commission, buyer can pay in installments without interest.
+seller_pays_shipping_from = "79.00"
+tiers = [
+  { up_to = "29.00", percent = "0.17", fixed_fee = "6.25" },
+  { up_to = "50.00", percent = "0.17", fixed_fee = "6.50" },
+  { up_to = "79.00", percent = "0.17", fixed_fee = "6.75" },
+  { percent = "0.17" },
+]
